@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="https://getbootstrap.com/docs/3.3/favicon.ico">
 
-    <title>Connexion</title>
+    <title>Inscription</title>
 
     <!-- Bootstrap core CSS -->
     <link href="./Signin Template for Bootstrap_files/bootstrap.min.css" rel="stylesheet">
@@ -32,16 +32,28 @@
   </head>
 
   <body>
-  	<form action="Connexion.php" method="post">
+  	<form action="Inscription.php" method="post">
 
     <div class="container">
 
       <form class="form-signin">
-        <h2 class="form-signin-heading">Please sign in</h2>
+        <h2 class="form-signin-heading">Please register</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" name="email">
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="" name="mdp">
+        <label for="inputProfil" class="sr-only">Profil</label>
+        <select name="profil">
+          <option value="et" selected>Etudiant</option>
+          <option value="em">Employeur</option>
+        </select>
+        <label for="inputDate" class="sr-only">Date de naissance</label>
+        <input type="date" id="inputDate" class="form-control" placeholder="Date de naissance" required="" name="datenaissance">
+        <label for="inputSexe" class="sr-only">Sexe</label>
+        <select name="sexe">
+          <option value="F" selected>Femme</option>
+          <option value="H">Homme</option>
+        </select>
         <button class="btn btn-lg btn-primary btn-block" type="submit" name="submit">Sign in</button>
       </form>
 
