@@ -1,5 +1,28 @@
-<!DOCTYPE html>
-<!-- saved from url=(0050)https://getbootstrap.com/docs/3.3/examples/signin/ -->
+<?php
+    session_start();
+
+    require_once('ConnexionBDD.php');
+    require_once('fonction.php');
+?>
+
+<h2 class="header header-form">S'inscrire</h2>
+
+<?php
+    if(isset($_POST['submit'])){
+        $profil = htmlspecialchars(trim($_POST['profil']));
+        $email = htmlspecialchars(trim($_POST['email']));
+        $password = sha1(htmlspecialchars(trim($_POST['mdp'])));
+
+        if(email_taken($email) == 1){
+            $error_email = "L'adresse email est déjà utilisée...";
+        }else{
+            register($email, $password, $profil);
+            $_SESSION['email'] = $email;
+            echo "Inscription réussie";
+        }
+    }
+?>
+
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,19 +55,21 @@
   </head>
 
   <body>
-  	<form action="Inscription2.php" method="post">
+    <form method="post">
 
     <div class="container">
 
       <form class="form-signin">
         <h2 class="form-signin-heading">Please register</h2>
-        <label for="inputDate" class="sr-only">Date de naissance</label>
-        <input type="date" id="inputDate" class="form-control" placeholder="Date de naissance" required="" name="datenaissance">
-        <label for="inputSexe" class="sr-only">Sexe</label>
-        <select name="sexe">
-          <option value="F" selected>Femme</option>
-          <option value="H">Homme</option>
+        <label for="inputProfil" class="sr-only">Profil</label>
+        <select name="profil">
+            <option value="et" selected>Etudiant</option>
+            <option value="em" selected>Employeur</option>
         </select>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" name="email">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="" name="mdp">
         <button class="btn btn-lg btn-primary btn-block" type="submit" name="submit">Sign in</button>
       </form>
 
